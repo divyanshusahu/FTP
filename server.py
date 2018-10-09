@@ -1,6 +1,6 @@
 #!/usr/bin/python2
 
-import os, sys
+import os
 import logging
 from hashlib import sha256
 
@@ -11,7 +11,11 @@ from pyftpdlib.servers import FTPServer
 class DummySHA256Authorizer(DummyAuthorizer) :
 
 	def validate_authentication(self, username, password, handler) :
-		hash_password = sha256(password).hexdigest()
+
+		if username == 'guest' :
+			hash_password = password
+		else :
+			hash_password = sha256(password).hexdigest()
 
 		try :
 			if self.user_table[username]['pwd'] != hash_password :
@@ -57,6 +61,9 @@ def main() :
 			else :
 				authorizer.add_user(user[0], hash_password, os.getcwd() + '/files',perm='elr', msg_login="%s Login successful." % user[0], msg_quit="Goodbye.")
 	
+	
+	authorizer.add_user('guest', '', os.getcwd() + '/files', perm='el')
+
 	# FTP handler
 	handler = CustomHandler
 	handler.authorizer = authorizer
@@ -65,7 +72,7 @@ def main() :
 	logging.basicConfig(filename = 'log_server.log', level=logging.INFO)
 
 	# Welcome string when client connects
-	handler.banner = "FTP Server ready"
+	handler.banner = "Welcome to Group 13 FTP Server"
 
 	# listen address port > 1024 (otherwise use sudo)
 	address = ('127.0.0.1',2121)

@@ -2,28 +2,6 @@
 
 from ftplib import FTP
 
-def ftpclient() :
-
-	# initiate the class object
-	ftp = FTP('')
-
-	# connect to the server
-	ftp.connect('127.0.0.1', 2121)
-
-	# login (login anonymously)
-	ftp.login('group13', 'group13')
-
-	# to change directory
-	#ftp.cwd('files')
-
-	# welcome message from the server
-	print ftp.getwelcome()
-
-	# print files in the directory
-	ftp.retrlines('LIST')
-
-	ftp.close()
-
 def uploadFile() :
 	filename = 'testfile.txt'
 	ftp.storbinary('STOR ' + filename, open(filename, 'rb'))
@@ -37,7 +15,23 @@ def downloadFile() :
 	localfile.close()
 
 def main() :
-	ftpclient()
+	
+	# initiate the class object
+	ftp = FTP('')
+
+	# connect to the server
+	ftp.connect('127.0.0.1', 2121)
+
+	# login guest user
+	ftp.login('guest', '')
+
+	# welcome message from the server
+	print ftp.getwelcome()
+
+	# print files in the directory
+	ftp.retrlines('LIST')
+
+	ftp.close()
 
 if __name__ == '__main__':
  	main() 

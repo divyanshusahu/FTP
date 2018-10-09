@@ -26,7 +26,7 @@ class DummySHA256Authorizer(DummyAuthorizer) :
 class CustomHandler(FTPHandler) :
 	
 	def on_connect(self) :
-		print "%s:%s" % (self.remote_ip, self.remote_port)
+		pass
 
 	def on_dissconnect(self) :
 		pass
@@ -34,7 +34,13 @@ class CustomHandler(FTPHandler) :
 	def on_login(self, username) :
 		pass
 
+	def on_login_failed(self, username, password) :
+		pass
+
 	def on_logout(self, username) :
+		pass
+
+	def on_file_sent(self, file) :
 		pass
 
 	def on_file_received(self, file) :
@@ -73,6 +79,12 @@ def main() :
 
 	# Welcome string when client connects
 	handler.banner = "Welcome to Group 13 FTP Server"
+
+	# max_login_attempts (default 3)
+	#handler.max_login_attempts = 3
+
+	# Failed Authentication Timeout
+	handler.auth_failed_timeout = 90
 
 	# listen address port > 1024 (otherwise use sudo)
 	address = ('127.0.0.1',2121)

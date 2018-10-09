@@ -1,6 +1,10 @@
 #!/usr/bin/python2
 
+import sys
 from ftplib import FTP
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 
 def uploadFile() :
 	filename = 'testfile.txt'
@@ -14,24 +18,32 @@ def downloadFile() :
 	ftp.quit()
 	localfile.close()
 
-def main() :
-	
-	# initiate the class object
+def window() :
+
+	# FTP connection established with guest user
 	ftp = FTP('')
+	ftp.connect('127.0.0.1',2121)
+	ftp.login('guest','')
 
-	# connect to the server
-	ftp.connect('127.0.0.1', 2121)
+	# Open the GUI Window
+	app = QApplication([])
+	app.setStyle('Fusion')
 
-	# login guest user
-	ftp.login('guest', '')
+	window = QWidget()
+	window.setWindowTitle("FTP Server")
+	window.setGeometry(100,100,800,400)
+	l1 = QLabel(window)
+	l1.setText(ftp.getwelcome()[4:])
+	l1.setAlignment(Qt.AlignCenter)
 
-	# welcome message from the server
-	print ftp.getwelcome()
-
-	# print files in the directory
 	ftp.retrlines('LIST')
-
 	ftp.close()
+
+	window.show()
+	sys.exit(app.exec_())
+
+def main() :
+	window()
 
 if __name__ == '__main__':
  	main() 

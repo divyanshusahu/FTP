@@ -11,7 +11,7 @@ def ftpclient() :
 	ftp.connect('127.0.0.1', 2121)
 
 	# login (login anonymously)
-	ftp.login()
+	ftp.login('group13', 'group13')
 
 	# to change directory
 	#ftp.cwd('files')
@@ -21,6 +21,8 @@ def ftpclient() :
 
 	# print files in the directory
 	ftp.retrlines('LIST')
+
+	ftp.close()
 
 def uploadFile() :
 	filename = 'testfile.txt'

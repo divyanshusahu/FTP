@@ -11,10 +11,10 @@ from pyftpdlib.servers import FTPServer
 class DummySHA256Authorizer(DummyAuthorizer) :
 
 	def validate_authentication(self, username, password, handler) :
-		hash = sha256(password).hexdigest()
+		hash_password = sha256(password).hexdigest()
 
 		try :
-			if self.user_table[username]['pwd'] != hash :
+			if self.user_table[username]['pwd'] != hash_password :
 				raise KeyError
 		except KeyError :
 			raise AuthenticationFailed
@@ -44,17 +44,19 @@ class CustomHandler(FTPHandler) :
 
 def main() :
 
-	hash_password = sha256('password123').hexdigest()
-
 	# dummy authorizer for managing users
-	authorizer = DummyAuthorizer()
+	authorizer = DummySHA256Authorizer()
 
-	# new user with full permissions
-	authorizer.add_user('admin', 'password123', os.getcwd() + '/files',perm='elradfmwMT')
-
-	# anonymous user
-	authorizer.add_anonymous(os.getcwd() + '/files')
-
+	with open('usertable.txt') as u :
+		for line in u :
+			user = line.rstrip().split(' ')
+			# new user with full permissions
+			hash_password = sha256(user[1]).hexdigest()
+			if user[0] == 'admin' :
+				authorizer.add_user(user[0], hash_password, os.getcwd() + '/files',perm='elradfmwMT', msg_login="Admin Login successful.", msg_quit="Goodbye.")
+			else :
+				authorizer.add_user(user[0], hash_password, os.getcwd() + '/files',perm='elr', msg_login="%s Login successful." % user[0], msg_quit="Goodbye.")
+	
 	# FTP handler
 	handler = CustomHandler
 	handler.authorizer = authorizer

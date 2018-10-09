@@ -1,6 +1,8 @@
+#!/usr/bin/python3
+
 from ftplib import FTP
 
-class FTPConnect() :
+class FTPConnect :
 
 	welcomeMsg = ''
 
@@ -14,7 +16,6 @@ class FTPConnect() :
 		ftp.connect('127.0.0.1',2121)
 		ftp.login('guest','')
 
-		print(ftp.getwelcome())
 		FTPConnect.welcomeMsg = ftp.getwelcome()
-
-		ftp.close()
+		
+		#ftp.close()

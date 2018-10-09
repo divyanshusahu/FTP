@@ -1,2 +1,3 @@
 log_server.log
 .fuse_hidden*
+__pycache__/

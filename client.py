@@ -5,17 +5,24 @@ from ftplib import FTP
 class FTPConnect :
 
 	welcomeMsg = ''
+	curUser = ''
+	ftp = FTP('')
+	ftp.connect('127.0.0.1', 2121)
 
 	def __init__(self) :
 
-		self.initFTP()
+		self.login('guest','')
 
-	def initFTP(self) :
+	def login(self, username, password) :
 
-		ftp = FTP('')
-		ftp.connect('127.0.0.1',2121)
-		ftp.login('guest','')
+		FTPConnect.ftp.login(username,password)
+		FTPConnect.curUser = username
+		FTPConnect.welcomeMsg = FTPConnect.ftp.getwelcome()
 
-		FTPConnect.welcomeMsg = ftp.getwelcome()
-		
-		#ftp.close()
+	def dirList(self) :
+
+		return FTPConnect.ftp.mlsd()
+
+	def close(self) :
+
+		FTPConnect.ftp.close()

@@ -10,11 +10,14 @@ def ftpclient() :
 	# connect to the server
 	ftp.connect('127.0.0.1', 2121)
 
-	# login
+	# login (login anonymously)
 	ftp.login()
 
 	# to change directory
 	#ftp.cwd('files')
+
+	# welcome message from the server
+	print ftp.getwelcome()
 
 	# print files in the directory
 	ftp.retrlines('LIST')

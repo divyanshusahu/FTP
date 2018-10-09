@@ -1,25 +1,66 @@
 #!/usr/bin/python2
 
-import os
+import os, sys
+import logging
+from hashlib import sha256
 
-from pyftpdlib.authorizers import DummyAuthorizer
+from pyftpdlib.authorizers import DummyAuthorizer, AuthenticationFailed
 from pyftpdlib.handlers import FTPHandler
 from pyftpdlib.servers import FTPServer
 
+class DummySHA256Authorizer(DummyAuthorizer) :
+
+	def validate_authentication(self, username, password, handler) :
+		hash = sha256(password).hexdigest()
+
+		try :
+			if self.user_table[username]['pwd'] != hash :
+				raise KeyError
+		except KeyError :
+			raise AuthenticationFailed
+
+class CustomHandler(FTPHandler) :
+	
+	def on_connect(self) :
+		print "%s:%s" % (self.remote_ip, self.remote_port)
+
+	def on_dissconnect(self) :
+		pass
+
+	def on_login(self, username) :
+		pass
+
+	def on_logout(self, username) :
+		pass
+
+	def on_file_received(self, file) :
+		pass
+
+	def on_incomplete_file_sent(self, file) :
+		pass
+
+	def on_incomplete_file_received(self, file) :
+		os.remove(file)
+
 def main() :
+
+	hash_password = sha256('password123').hexdigest()
 
 	# dummy authorizer for managing users
 	authorizer = DummyAuthorizer()
 
 	# new user with full permissions
-	authorizer.add_user('admin','password123','files/',perm='elradfmwMT')
+	authorizer.add_user('admin', 'password123', os.getcwd() + '/files',perm='elradfmwMT')
 
 	# anonymous user
 	authorizer.add_anonymous(os.getcwd() + '/files')
 
 	# FTP handler
-	handler = FTPHandler
+	handler = CustomHandler
 	handler.authorizer = authorizer
+
+	# server logging
+	logging.basicConfig(filename = 'log_server.log', level=logging.INFO)
 
 	# Welcome string when client connects
 	handler.banner = "FTP Server ready"

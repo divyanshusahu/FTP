@@ -1,0 +1,145 @@
+INFO:pyftpdlib:>>> starting FTP server on 127.0.0.1:2121, pid=7999 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:127.0.0.1:59922-[] FTP session opened (connect)
+ERROR:pyftpdlib:unhandled exception in instance <FTPHandler(id=139968736347848, addr='127.0.0.1:59922', user=u'anonymous')>
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/asyncore.py", line 83, in read
+    obj.handle_read_event()
+  File "/usr/lib/python2.7/asyncore.py", line 449, in handle_read_event
+    self.handle_read()
+  File "/usr/local/lib/python2.7/dist-packages/pyftpdlib/ioloop.py", line 920, in handle_read
+    asynchat.async_chat.handle_read(self)
+  File "/usr/lib/python2.7/asynchat.py", line 165, in handle_read
+    self.found_terminator()
+  File "/usr/local/lib/python2.7/dist-packages/pyftpdlib/handlers.py", line 1414, in found_terminator
+    self.pre_process_command(line, cmd, arg)
+  File "/usr/local/lib/python2.7/dist-packages/pyftpdlib/handlers.py", line 1463, in pre_process_command
+    self.process_command(cmd, arg)
+  File "/usr/local/lib/python2.7/dist-packages/pyftpdlib/handlers.py", line 1542, in process_command
+    method(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/pyftpdlib/handlers.py", line 2556, in ftp_PASS
+    self.authorizer.validate_authentication(self.username, line, self)
+  File "./server.py", line 20, in validate_authentication
+    raise AuthenticationFailed
+NameError: global name 'AuthenticationFailed' is not defined
+INFO:pyftpdlib:127.0.0.1:59922-[anonymous] FTP session closed (disconnect).
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 127.0.0.1:2121, pid=8066 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:127.0.0.1:60012-[] FTP session opened (connect)
+INFO:pyftpdlib:127.0.0.1:60012-[] USER 'anonymous' failed login.
+INFO:pyftpdlib:127.0.0.1:60012-[] FTP session closed (disconnect).
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 127.0.0.1:2121, pid=8103 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:127.0.0.1:60018-[] FTP session opened (connect)
+INFO:pyftpdlib:127.0.0.1:60018-[] USER 'anonymous' failed login.
+INFO:pyftpdlib:127.0.0.1:60018-[] FTP session closed (disconnect).
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 127.0.0.1:2121, pid=8162 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:127.0.0.1:60086-[] FTP session opened (connect)
+INFO:pyftpdlib:127.0.0.1:60086-[] USER 'anonymous' failed login.
+INFO:pyftpdlib:127.0.0.1:60086-[] FTP session closed (disconnect).
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 127.0.0.1:2121, pid=8285 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:127.0.0.1:60206-[] FTP session opened (connect)
+INFO:pyftpdlib:127.0.0.1:60206-[anonymous] USER 'anonymous' logged in.
+INFO:pyftpdlib:127.0.0.1:60206-[anonymous] FTP session closed (disconnect).
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 127.0.0.1:2121, pid=8348 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:127.0.0.1:60266-[] FTP session opened (connect)
+INFO:pyftpdlib:127.0.0.1:60266-[] USER 'anonymous' failed login.
+INFO:pyftpdlib:127.0.0.1:60266-[] FTP session closed (disconnect).
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 127.0.0.1:2121, pid=8386 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:127.0.0.1:60272-[] FTP session opened (connect)
+INFO:pyftpdlib:127.0.0.1:60272-[] USER 'anonymous' failed login.
+INFO:pyftpdlib:127.0.0.1:60272-[] FTP session closed (disconnect).
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 127.0.0.1:2121, pid=8409 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:127.0.0.1:60276-[] FTP session opened (connect)
+INFO:pyftpdlib:127.0.0.1:60276-[anonymous] USER 'anonymous' logged in.
+INFO:pyftpdlib:127.0.0.1:60276-[anonymous] FTP session closed (disconnect).
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 127.0.0.1:2121, pid=8492 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:127.0.0.1:60374-[] FTP session opened (connect)
+ERROR:pyftpdlib:unhandled exception in instance <CustomHandler(id=140560795298128, addr='127.0.0.1:60374')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/pyftpdlib/servers.py", line 255, in handle_accepted
+    handler.handle()
+  File "/usr/local/lib/python2.7/dist-packages/pyftpdlib/handlers.py", line 1329, in handle
+    self.on_connect()
+  File "./server.py", line 25, in on_connect
+    print "%s:%s" % (self.remote_ip, self.remort_port)
+  File "/usr/lib/python2.7/asyncore.py", line 421, in __getattr__
+    %(self.__class__.__name__, attr))
+AttributeError: CustomHandler instance has no attribute 'remort_port'
+INFO:pyftpdlib:127.0.0.1:60374-[] FTP session closed (disconnect).
+INFO:pyftpdlib:127.0.0.1:60380-[] FTP session opened (connect)
+ERROR:pyftpdlib:unhandled exception in instance <CustomHandler(id=140560795298128, addr='127.0.0.1:60380')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/pyftpdlib/servers.py", line 255, in handle_accepted
+    handler.handle()
+  File "/usr/local/lib/python2.7/dist-packages/pyftpdlib/handlers.py", line 1329, in handle
+    self.on_connect()
+  File "./server.py", line 25, in on_connect
+    print "%s:%s" % (self.remote_ip, self.remort_port)
+  File "/usr/lib/python2.7/asyncore.py", line 421, in __getattr__
+    %(self.__class__.__name__, attr))
+AttributeError: CustomHandler instance has no attribute 'remort_port'
+INFO:pyftpdlib:127.0.0.1:60380-[] FTP session closed (disconnect).
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 127.0.0.1:2121, pid=8529 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:127.0.0.1:60382-[] FTP session opened (connect)
+INFO:pyftpdlib:127.0.0.1:60382-[anonymous] USER 'anonymous' logged in.
+INFO:pyftpdlib:127.0.0.1:60382-[anonymous] FTP session closed (disconnect).
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<
+INFO:pyftpdlib:>>> starting FTP server on 127.0.0.1:2121, pid=8566 <<<
+INFO:pyftpdlib:concurrency model: async
+INFO:pyftpdlib:masquerade (NAT) address: None
+INFO:pyftpdlib:passive ports: None
+INFO:pyftpdlib:127.0.0.1:60398-[] FTP session opened (connect)
+INFO:pyftpdlib:127.0.0.1:60398-[anonymous] USER 'anonymous' logged in.
+INFO:pyftpdlib:127.0.0.1:60398-[anonymous] FTP session closed (disconnect).
+INFO:pyftpdlib:127.0.0.1:60404-[] FTP session opened (connect)
+INFO:pyftpdlib:127.0.0.1:60404-[anonymous] USER 'anonymous' logged in.
+INFO:pyftpdlib:127.0.0.1:60404-[anonymous] FTP session closed (disconnect).
+INFO:pyftpdlib:received interrupt signal
+INFO:pyftpdlib:>>> shutting down FTP server (1 active socket fds) <<<

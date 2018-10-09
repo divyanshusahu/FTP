@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 
 import os
 import logging
@@ -15,7 +15,7 @@ class DummySHA256Authorizer(DummyAuthorizer) :
 		if username == 'guest' :
 			hash_password = password
 		else :
-			hash_password = sha256(password).hexdigest()
+			hash_password = sha256(password.encode('utf-8')).hexdigest()
 
 		try :
 			if self.user_table[username]['pwd'] != hash_password :
@@ -61,7 +61,7 @@ def main() :
 		for line in u :
 			user = line.rstrip().split(' ')
 			# new user with full permissions
-			hash_password = sha256(user[1]).hexdigest()
+			hash_password = sha256(user[1].encode('utf-8')).hexdigest()
 			if user[0] == 'admin' :
 				authorizer.add_user(user[0], hash_password, os.getcwd() + '/files',perm='elradfmwMT', msg_login="Admin Login successful.", msg_quit="Goodbye.")
 			else :

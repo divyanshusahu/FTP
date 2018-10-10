@@ -61,11 +61,28 @@ class MainWindow(QWidget) :
 		#self.vbox.addWidget(self.label)
 		return self.label
 
+	def changeColor(self, l, r, g, b, a) :
+
+		# To change background color of the label
+		l.setAutoFillBackground(True)
+		color = QColor(r,g,b)
+		alpha = a
+		values = "{r}, {g}, {b}, {a}".format(r = color.red(),
+												g = color.green(),
+												b = color.blue(),
+												a = alpha
+												)
+		l.setStyleSheet("QLabel { background-color: rgba("+values+");}")
+
+		return l
+
 	def previewBox(self) :
 
 		self.label = QLabel(self)
 		self.label.setText("Preview")
 		self.label.setAlignment(Qt.AlignCenter)
+
+		self.label = self.changeColor(self.label, 200, 200, 200, 255)
 
 		return self.label
 
@@ -82,6 +99,8 @@ class MainWindow(QWidget) :
 		self.label.setText("Name")
 		self.label.setAlignment(Qt.AlignCenter)
 
+		self.label = self.changeColor(self.label, 215,215,215,255)
+
 		return self.label
 
 	def dirLMod(self) :
@@ -89,6 +108,8 @@ class MainWindow(QWidget) :
 		self.label = QLabel(self)
 		self.label.setText("Modified")
 		self.label.setAlignment(Qt.AlignCenter)
+
+		self.label = self.changeColor(self.label,215,215,215,255)
 
 		return self.label
 
@@ -98,6 +119,8 @@ class MainWindow(QWidget) :
 		self.label.setText("Permissions")
 		self.label.setAlignment(Qt.AlignCenter)
 
+		self.label = self.changeColor(self.label, 215,215,215,255)
+
 		return self.label
 
 	def dirLSize(self) :
@@ -106,6 +129,8 @@ class MainWindow(QWidget) :
 		self.label.setText("Size")
 		self.label.setAlignment(Qt.AlignCenter)
 
+		self.label = self.changeColor(self.label, 215,215,215,255)
+
 		return self.label
 
 	def dirLType(self) :
@@ -113,6 +138,8 @@ class MainWindow(QWidget) :
 		self.label = QLabel(self)
 		self.label.setText("Type")
 		self.label.setAlignment(Qt.AlignCenter)
+
+		self.label = self.changeColor(self.label, 215,215,215,255)
 
 		return self.label
 
@@ -129,31 +156,43 @@ class MainWindow(QWidget) :
 			l1 = QLabel(self)
 			l1.setText(filename)
 			l1.setAlignment(Qt.AlignCenter)
+			l1 = self.changeColor(l1, 255,255,255,255)
 			curList.append(l1)
 
 			l2 = QLabel(self)
 			l2.setText(fileinfo['modify'][:8])
 			l2.setAlignment(Qt.AlignCenter)
+			l2 = self.changeColor(l2, 255,255,255,255)
 			curList.append(l2)
 
 			l3 = QLabel(self)
 			l3.setText(fileinfo['perm'])
 			l3.setAlignment(Qt.AlignCenter)
+			l3 = self.changeColor(l3, 255,255,255,255)
 			curList.append(l3)
 
 			l4 = QLabel(self)
 			l4.setText(fileinfo['size'])
 			l4.setAlignment(Qt.AlignCenter)
+			l4 = self.changeColor(l4, 255,255,255,255)
 			curList.append(l4)
 
 			l5 = QLabel(self)
 			l5.setText(fileinfo['type'])
 			l5.setAlignment(Qt.AlignCenter)
+			l5 = self.changeColor(l5, 255,255,255,255)
 			curList.append(l5)
 
 			self.labelList.append(curList)
 
 		return self.labelList
+
+	def backDirButton(self) :
+
+		self.button = QPushButton('Back', self)
+		self.button.resize(self.button.sizeHint())
+
+		return self.button
 
 
 	def initUI(self) :
@@ -161,40 +200,42 @@ class MainWindow(QWidget) :
 		FTPConnect()
 
 		grid = QGridLayout()
-		grid.setSpacing(2)
+		grid.setSpacing(0)
 		
-		grid.addWidget(self.welcomeMsg(),0,3,1,6)
-		grid.addWidget(self.loginButton(),0,9,1,3)
+		grid.addWidget(self.welcomeMsg(),0,3,2,6)
+		grid.addWidget(self.loginButton(),0,11,2,1)
 		
 		# Directory Listing title
-		grid.addWidget(self.dirLName(),1,3,1,2)
-		grid.addWidget(self.dirLMod(),1,5,1,1)
-		grid.addWidget(self.dirLPerm(),1,6,1,1)
-		grid.addWidget(self.dirLSize(),1,7,1,1)
-		grid.addWidget(self.dirLType(),1,8,1,1)
+		grid.addWidget(self.dirLName(),2,3,1,2)
+		grid.addWidget(self.dirLMod(),2,5,1,1)
+		grid.addWidget(self.dirLPerm(),2,6,1,1)
+		grid.addWidget(self.dirLSize(),2,7,1,1)
+		grid.addWidget(self.dirLType(),2,8,1,1)
 
 		# Directory Listing
-		cx = 2
+		cx = 3
 		dl = self.showDir()
 		for items in dl :
 			cy = 3
 			for i in items :
 				if cy == 3 :
-					grid.addWidget(i,cx,cy,cx,2)
+					grid.addWidget(i,cx,cy,1,2)
 					cy += 2
 				else :
-					grid.addWidget(i,cx,cy,cx,1)
+					grid.addWidget(i,cx,cy,1,1)
 					cy += 1
 			cx += 1
 
 		ty, tx = (grid.columnCount(), grid.rowCount())
+		#print(tx,ty)
 
-		grid.addWidget(self.previewBox(),1,9,tx-1,3)
-		grid.addWidget(self.createQButton(),tx-1,9,1,3)
+		grid.addWidget(self.previewBox(),2,9,tx-2,3)
+		grid.addWidget(self.createQButton(),tx,11,2,1)
+		grid.addWidget(self.backDirButton(),tx,3,2,1)
 
 		self.setLayout(grid)
 		#cy, cx = (grid.columnCount(), grid.rowCount())
-		print(grid.rowCount(), grid.columnCount())
+		#print(grid.rowCount(), grid.columnCount())
 		
 		# For Window Screen
 		self.setGeometry(300,300,1000,600)

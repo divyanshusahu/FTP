@@ -152,7 +152,7 @@ class MainWindow(QWidget) :
 			
 			fileinfo = dirItem
 			curList = []
-			
+
 			l1 = QLabel(self)
 			l1.setText(fileinfo['filename'])
 			l1.setAlignment(Qt.AlignCenter)
@@ -238,7 +238,7 @@ class MainWindow(QWidget) :
 		#print(grid.rowCount(), grid.columnCount())
 		
 		# For Window Screen
-		self.setGeometry(300,300,1000,600)
+		self.setGeometry(300,300,600,400)
 		self.setWindowTitle("FTP Server : Logged in as (%s)" % FTPConnect.curUser)
 		self.show()
 

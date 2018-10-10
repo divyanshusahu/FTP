@@ -18,3 +18,7 @@ Current default port in server.py is 2121. If you use default FTP port 20 and 21
 
 ## Platform
 Linux
+
+## Screenshots
+
+![Screenshot-1](files/img/Screenshot1.png)

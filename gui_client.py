@@ -150,11 +150,11 @@ class MainWindow(QWidget) :
 
 		for dirItem in self.dirObj :
 			
-			filename, fileinfo = dirItem
+			fileinfo = dirItem
 			curList = []
 			
 			l1 = QLabel(self)
-			l1.setText(filename)
+			l1.setText(fileinfo['filename'])
 			l1.setAlignment(Qt.AlignCenter)
 			l1 = self.changeColor(l1, 255,255,255,255)
 			curList.append(l1)

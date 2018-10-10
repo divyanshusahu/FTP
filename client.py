@@ -21,7 +21,30 @@ class FTPConnect :
 
 	def dirList(self) :
 
-		return FTPConnect.ftp.mlsd()
+		allF = FTPConnect.ftp.mlsd()
+		allDir = []
+		remFiles = []
+		sortedDir = []
+
+		for items in allF :
+
+			filename, fileinfo = items
+			if fileinfo['type'] == 'dir' :
+				temp1 = {'filename':filename}
+				fileinfo = {**temp1, **fileinfo}
+				allDir.append(fileinfo)
+
+			elif fileinfo['type'] != 'dir' :
+				temp2 = {'filename':filename}
+				fileinfo = {**temp2, **fileinfo}
+				remFiles.append(fileinfo)
+
+		#print([*allDir, *remFiles])
+
+		sortedDir = [*allDir, *remFiles]
+
+		#print(sortedDir)
+		return sortedDir
 
 	def close(self) :
 

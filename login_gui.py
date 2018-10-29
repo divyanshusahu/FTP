@@ -111,8 +111,11 @@ class LoginWindow(QWidget):
     def on_login(self) :
         print('Username is '+ self.uname_box.text())
         self.close()
-        
+
+def main() :
+	#app1 = QApplication(sys.argv)
+	ex1 = LoginWindow()
+	sys.exit(app.exec_())
+
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = LoginWindow()
-    sys.exit(app.exec_())
+    main()

@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from client import *
+import login_gui
 
 def uploadFile() :
 	filename = 'testfile.txt'
@@ -74,7 +75,15 @@ class MainWindow(QWidget) :
 		self.button = QPushButton('Login', self)
 		self.button.resize(self.button.sizeHint())
 
+		#### Added event to execute the login_gui script when login button is clicked
+
+		self.button.clicked.connect(self.open_new_window)
 		return self.button
+
+	#### Function to run the login_gui script
+
+	def open_new_window(self) :
+		login_gui.main()
 
 	def dirLName(self) :
 
